@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'ArcaneFont';
+    src: url('../fonts/Arcane Nine.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* Largeur de la scrollbar */
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111; /* Fond sombre */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #d4af37, #8b5a2b); /* Effet doré/cuivré */
+    border-radius: 10px;
+    border: 2px solid #222; /* Bord sombre pour un effet en relief */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #f5c542, #a56a3a); /* Éclaircissement au survol */
+}
+* {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'ArcaneFont', serif;
+    background-color: #0d0d0d;
+    color: #e0e0e0;
+    text-align: center;
+}
+
+.title {
+    color: rgba(217, 157, 11, 0.76);
+}
+h1 {
+    font-size: 2.5em;
+}
+
+a {
+    text-decoration: none;
+}
+.reset {
+    all: unset;
+}
