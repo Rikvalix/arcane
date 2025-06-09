@@ -1,6 +1,6 @@
 # Arcane
 
-## Description
+## 📖 Description
 
 Dans le cadre d'un stage académique en entreprise, j'ai développé une application web complète en apprenant et
 utilisant :
@@ -23,12 +23,63 @@ personnages, factions, et lieux emblématiques.
 4. 🔧 Edition de personnages via un panel admin
 5. 🔧 Ecriture d'histoire autours des personnages et stockage
 
-## Stack technique
+## 🔧 Stack technique
 | Frontend |   Backend   | Base de données |      Monitoring      | 
 |:--------:|:-----------:|:---------------:|:--------------------:|
 |  Vue.js  | Spring Boot |   PostgreSQL    | Prometheus + Grafana | 
 
-## Lancer le projet en local
+---
 
-Afin de faciliter le lancement du projet le fichier docker/.env est versionné avec les identifiants de connections
-à **PostgreSQL**.
+## 🚀 Lancer le projet en local
+
+Le projet est entièrement **dockerisé**, ce qui permet un déploiement rapide et isolé.
+
+### 🔧 Pré-requis
+
+* Docker installé sur votre machine
+* Docker Compose
+
+---
+
+### 📁 Configuration initiale
+
+1. **Fichier d’environnement Docker**
+   Le fichier [`docker/.env`](docker/.env) est versionné et contient les identifiants de connexion à **PostgreSQL** utilisés par défaut.
+
+2. **Configurer l'adresse IP de votre machine**
+   Modifiez l'IP de votre **PC ou serveur** dans les fichiers suivants :
+
+    * `arcane_vue/.env` → utilisé par le frontend pour accéder à l’API
+    * `arcane_backend/src/main/resources/application.properties` → utilisé si l’API a besoin d’une IP externe spécifique (dans certains cas)
+
+---
+
+### 📦 Construction des images Docker
+
+```bash
+docker compose build
+```
+
+---
+
+### 🚀 Lancement des services
+
+* **Tout lancer (avec logs)** :
+
+  ```bash
+  docker compose up
+  ```
+
+* **Tout lancer en arrière-plan (sans logs)** :
+
+  ```bash
+  docker compose up -d
+  ```
+
+* **Lancer uniquement les services principaux sans afficher les logs** :
+
+  ```bash
+  docker compose up -d db backend frontend
+  ```
+
+---
