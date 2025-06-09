@@ -1,8 +1,29 @@
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+    backend:
+      build: ./backend
+      ports:
+        - "8080:8080"
+      depends_on:
+        - db
+      environment:
+        - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/${POSTGRES_DB}
+        - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+        - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+        - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      networks:
+        - arcane-net
+
   db:
     image: postgres
     container_name: arcane_db
-    restart: always
+    #restart: always
     env_file:
       - .env
     environment:
