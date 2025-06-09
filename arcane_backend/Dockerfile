@@ -1,6 +1,6 @@
 FROM gradle:8.4-jdk17 AS build
 WORKDIR /app
-COPY build.gradle.kts settings.gradle.kts ./
+COPY build.gradle settings.gradle ./
 COPY src ./src
 RUN gradle bootJar
 FROM openjdk:17-jdk-slim

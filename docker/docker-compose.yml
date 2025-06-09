@@ -1,13 +1,33 @@
 services:
+
+  db:
+    image: postgres
+    container_name: arcane_db
+    #restart: always
+    env_file:
+      - .env
+    environment:
+     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+     POSTGRES_USER: ${POSTGRES_USER}
+     POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ../database:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+    networks:
+      - arcane-net
+
+
   frontend:
-    build: ./frontend
+    build: ../arcane_vue
     ports:
       - "80:80"
     depends_on:
       - backend
 
   backend:
-    build: ./backend
+    build: ../arcane_backend
     ports:
       - "8080:8080"
     depends_on:
@@ -19,22 +39,6 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     networks:
       - arcane-net
-
-  db:
-    image: postgres
-    container_name: arcane_db
-    #restart: always
-    env_file:
-      - .env
-    environment:
-     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-     POSTGRES_USER: ${POSTGRES_USER}
-     POSTGRES_DB: ${POSTGRES_DB} 
-    volumes:
-      - pgdata:/var/lib/postgresql/data 
-    ports:
-      - 5432:5432
-
  
   prometheus:
     image: prom/prometheus:v2.44.0
@@ -55,3 +59,6 @@ services:
 
 volumes:
   pgdata:
+
+networks:
+  arcane-net:
