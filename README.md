@@ -51,7 +51,7 @@ Le projet est entièrement **dockerisé**, ce qui permet un déploiement rapide 
 
     * `arcane_vue/.env` → utilisé par le frontend pour accéder à l’API
     * `arcane_backend/src/main/resources/application.properties` → utilisé si l’API a besoin d’une IP externe spécifique (dans certains cas)
-
+3. Placer vous dans le dossier **`docker/`**
 ---
 
 ### 📦 Construction des images Docker
